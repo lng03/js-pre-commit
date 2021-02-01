@@ -35,7 +35,7 @@
 - id: terraform-tfsec
   name: Terraform validate with tfsec
   description: Static analysis of Terraform templates to spot potential security issues.
-  entry: terraform_tfsec.sh
+  entry: hooks/tfsec.sh
   language: script
 
 - id: terraform-docs
