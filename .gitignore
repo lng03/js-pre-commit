@@ -1,0 +1,19 @@
+# OS X files
+.history
+.DS_Store
+
+# IntelliJ files
+.idea_modules
+*.iml
+*.iws
+*.ipr
+js-pre-commit2/.idea/
+build/
+*/build/
+out/
+
+# Python
+.mypy_cache
+*.pyc
+__pycache__
+.tox

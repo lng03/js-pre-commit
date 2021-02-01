@@ -1,0 +1,81 @@
+# This configuration file allows our pre-commit hooks to be used with pre-commit: http://pre-commit.com/
+
+- id: terraform-fmt
+  name: Terraform fmt
+  description: Rewrites all Terraform configuration files to a canonical format
+  entry: hooks/terraform-fmt.sh
+  language: script
+  files: \.tf$
+  exclude: \.+.terraform\/.*$
+  require_serial: true
+
+- id: terraform-validate
+  name: Terraform validate
+  description: Validates all Terraform configuration files
+  entry: hooks/terraform-validate.sh
+  language: script
+  files: \.tf$
+  exclude: \.+.terraform\/.*$
+  require_serial: true
+
+- id: tflint
+  name: tflint
+  description: Linter for Terraform source code
+  entry: hooks/tflint.sh
+  language: script
+  files: \.tf$
+  exclude: \.+.terraform\/.*$
+
+- id: shellcheck
+  name: Shellcheck Bash Linter
+  description: Performs linting on bash scripts
+  entry: hooks/shellcheck.sh
+  language: script
+
+- id: terraform_tfsec
+  name: Terraform validate with tfsec
+  description: Static analysis of Terraform templates to spot potential security issues.
+  entry: terraform_tfsec.sh
+  language: script
+
+- id: terraform_docs
+  name: Terraform docs
+  description: Inserts input and output documentation into README.md (using terraform-docs).
+  require_serial: true
+  entry: hooks/terraform-docs.sh
+  language: script
+  files: (\.tf)$
+  exclude: \.terraform\/.*$
+
+- id: bandit
+  name: bandit
+  description: 'Bandit is a tool for finding common security issues in Python code'
+  entry: bandit
+  language: python
+  language_version: python3
+  types: [python]
+
+- id: flake8
+  name: flake8
+  description: '`flake8` is a command-line utility for enforcing style consistency across Python projects.'
+  entry: flake8
+  language: python
+  types: [python]
+  require_serial: true
+
+- id: black
+  name: black
+  description: "Black: The uncompromising Python code formatter"
+  entry: black
+  language: python
+  language_version: python3
+  minimum_pre_commit_version: 2.9.2
+  require_serial: true
+  types_or: [python, pyi]
+
+- id: hadolint
+  name: Lint Dockerfiles
+  description: Runs hadolint to lint Dockerfiles
+  language: system
+  entry: hadolint
+  files: Dockerfile
