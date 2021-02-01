@@ -32,13 +32,13 @@
   entry: hooks/shellcheck.sh
   language: script
 
-- id: terraform_tfsec
+- id: terraform-tfsec
   name: Terraform validate with tfsec
   description: Static analysis of Terraform templates to spot potential security issues.
   entry: terraform_tfsec.sh
   language: script
 
-- id: terraform_docs
+- id: terraform-docs
   name: Terraform docs
   description: Inserts input and output documentation into README.md (using terraform-docs).
   require_serial: true
