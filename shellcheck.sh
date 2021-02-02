@@ -38,9 +38,11 @@ parse_arguments "$@"
 for FILE in $files; do
 	SHEBANG_REGEX='^#!\(/\|/.*/\|/.* \)\(\(ba\|da\|k\|a\)*sh\|bats\)$'
 	if (head -1 "$FILE" | grep "$SHEBANG_REGEX" >/dev/null); then
+	  cd "${FILE}/.." || exit 1
 		if ! shellcheck -x ${enable_list:+ --enable="$enable_list"} "$FILE"; then
 			exit_status=1
 		fi
+		cd -
 	elif [[ "$FILE" =~ .+\.(sh|bash|dash|ksh|ash|bats)$ ]]; then
 		echo "$FILE: missing shebang"
 		exit_status=1
