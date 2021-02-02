@@ -57,7 +57,7 @@ Other shellcheck flags can not be passed through.
 
 ```yaml
 repos:
-  - repo: https://github.com/gruntwork-io/pre-commit
+  - repo: https://github.com/lng03/js-pre-commit
     rev: <VERSION>
     hooks:
       - id: shellcheck
