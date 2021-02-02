@@ -79,3 +79,53 @@
   language: system
   entry: hadolint
   files: Dockerfile
+
+- id: docker-black
+  name: docker-black
+  language: docker_image
+  entry: --entrypoint black louisjyng/js-pre-commit:latest
+  files: \.py$
+
+- id: docker-flake8
+  name: docker-flake8
+  language: docker_image
+  entry: --entrypoint flake8 louisjyng/js-pre-commit:latest
+  files: \.py$
+
+- id: docker-tflint
+  name: docker-tflint
+  language: docker_image
+  entry: --entrypoint /hooks/tflint.sh louisjyng/js-pre-commit:latest
+  files: \.tf$
+  exclude: \.+.terraform\/.*$
+
+- id: docker-tfsec
+  name: docker-tfsec
+  language: docker_image
+  entry: --entrypoint /hooks/tfsec.sh louisjyng/js-pre-commit:latest
+
+- id: docker-shellcheck
+  name: docker-shellcheck
+  language: docker_image
+  entry: --entrypoint /hooks/shellcheck.sh louisjyng/js-pre-commit:latest
+
+- id: docker-terraform-fmt
+  name: docker-terraform-fmt
+  language: docker_image
+  entry: --entrypoint /hooks/terraform-fmt.sh louisjyng/js-pre-commit:latest
+  files: \.tf$
+  exclude: \.+.terraform\/.*$
+
+- id: docker-terraform-validate
+  name: docker-terraform-validate
+  language: docker_image
+  entry: --entrypoint /hooks/terraform-validate.sh louisjyng/js-pre-commit:latest
+  files: \.tf$
+  exclude: \.+.terraform\/.*$
+
+- id: docker-terraform-docs
+  name: docker-terraform-docs
+  language: docker_image
+  entry: --entrypoint /hooks/terraform-docs.sh louisjyng/js-pre-commit:latest
+  files: \.tf$
+  exclude: \.+.terraform\/.*$
