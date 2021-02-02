@@ -7,7 +7,7 @@
 *.iml
 *.iws
 *.ipr
-js-pre-commit2/.idea/
+.idea/
 build/
 */build/
 out/
