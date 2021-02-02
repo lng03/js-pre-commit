@@ -129,3 +129,10 @@
   entry: --entrypoint /hooks/terraform-docs.sh louisjyng/js-pre-commit:latest
   files: \.tf$
   exclude: \.+.terraform\/.*$
+
+- id: docker-hadolint
+  name: Lint Dockerfiles
+  description: Runs hadolint Docker image to lint Dockerfiles
+  language: docker_image
+  types: ["dockerfile"]
+  entry: louisjyng/js-pre-commit:latest hadolint
