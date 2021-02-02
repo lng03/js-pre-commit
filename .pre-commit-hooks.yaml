@@ -28,7 +28,7 @@
   exclude: \.terraform\/.*$
 
 - id: tflint
-  name: tflint
+  name: TFlint
   description: Linter for Terraform source code
   entry: tflint.sh
   language: script
