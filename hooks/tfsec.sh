@@ -10,18 +10,21 @@ main() {
 }
 
 tfsec_() {
+  index=0
   # consume modified files passed from pre-commit so that
   # tfsec runs against only those relevant directories
   for file_with_path in $FILES; do
     file_with_path="${file_with_path// /__REPLACED__SPACE__}"
     paths[index]=$(dirname "$file_with_path")
 
-    let "index+=1"
+    (( index+=1 )) || true
   done
 
   for path_uniq in $(echo "${paths[*]}" | tr ' ' '\n' | sort -u); do
     path_uniq="${path_uniq//__REPLACED__SPACE__/ }"
     pushd "$path_uniq" > /dev/null
+    # shellcheck disable=SC2086
+    # Deliberately globbing args
     tfsec $ARGS
     popd > /dev/null
   done
@@ -41,7 +44,7 @@ initialize_() {
   _SCRIPT_DIR="$(dirname "$source")"
 
   # source getopt function
-  # shellcheck source=lib_getopt
+  # shellcheck source=./hooks/lib_getopt
   . "$_SCRIPT_DIR/lib_getopt"
 }
 

@@ -24,7 +24,7 @@ initialize_() {
   _SCRIPT_DIR="$(dirname "$source")"
 
   # source getopt function
-  # shellcheck source=lib_getopt
+  # shellcheck source=./hooks/lib_getopt
   . "$_SCRIPT_DIR/lib_getopt"
 }
 
