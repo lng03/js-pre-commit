@@ -92,6 +92,12 @@
   entry: --entrypoint flake8 louisjyng/js-pre-commit:latest
   files: \.py$
 
+- id: docker-bandit
+  name: docker-bandit
+  language: docker_image
+  entry: --entrypoint bandit louisjyng/js-pre-commit:latest
+  files: \.py$
+
 - id: docker-tflint
   name: docker-tflint
   language: docker_image
